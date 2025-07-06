@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<%! from django.shortcuts import reverse %>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="/static/dashboard/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/dashboard/css/login.css" rel="stylesheet" />
+</head>
+<body>
+<% action = reverse('dashboard_login') if not to else '{}?to={}'.format(reverse('dashboard_login'),to) %>
+<form class="form-horizontal edit-area" action="${action}" method="post">
+    ${csrf_token}
+  <div class="mb-3">
+    <label  class="form-label">用户名</label>
+    <input type="text" name="username" class="form-control" >
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">密码</label>
+    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+  </div>
+
+  <button type="submit" class="btn btn-primary">登录</button>${error}
+</form>
+</body>
+</html>

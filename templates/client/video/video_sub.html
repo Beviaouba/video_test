@@ -1,0 +1,74 @@
+<%inherit file="../base.html" />
+
+<%def name="content()">
+<%!
+from django.shortcuts import reverse
+from app.model.video import FromType
+from app.utils.permission import client_auth
+%>
+<img src="${video.image}" class="video-image" />
+<div class="data">
+    <p>
+        <span class="span">名称：</span><br/>
+    ${video.name}
+    </p>
+    <p>
+        <span class="span">演员：</span>
+        <ul>
+        % for man in video.video_star.all():
+            <li>${man.name}:${man.ident}</li>
+        % endfor
+        </ul>
+    </p>
+    <p>
+        <span class="span">简介：</span><br/>
+        <span class="info">${video.info}</span>
+    </p>
+    <p>
+        <span class="span">选集：</span><br/>
+        % if  not client_auth(request):
+        <a href="${reverse('client_auth')}">请您登录</a>
+        % else :
+        1123
+        <ul class="number-ul">
+        % for data in video.video_sub.all():
+            <li><a href="${data.url}">第${data.number}集</a></li>
+        % endfor
+        </ul>
+        % endif
+    </p>
+    <p>
+        <span class="span">评论区域</span><br/>
+        <div class="comment-area">
+            % if user:
+            <textarea id="comment-content" placeholder="新的风暴已经出现，快来评论吧"></textarea>${csrf_token}
+            <button id="comment-submit" data-url="${reverse('client_add_comment')}" data-user-id="${user.id}" data-video-id="${video.id}">提交</button>
+            % else:
+            <p><a href="${reverse('client_auth')}">请先登录再评论</a></p>
+            % endif
+        </div>
+    </p>
+    <p class="comment-show-area">
+        <span class="span">评论展示</span>
+        <div id="ajax-comment-show"></div>
+        <ul class="comment-show">
+            % for comment in comments:
+            <li>
+                <span>${comment.user.username}:</span>
+                <span>${comment.content}</span>
+            </li>
+            % endfor
+        </ul>
+    </p>
+</div>
+
+
+</%def>
+
+<%def name="css()">
+<link href="/static/client/css/video_sub.css" rel="stylesheet">
+</%def>
+
+<%def name="js()">
+<script src="/static/client/js/video_sub.js"></script>
+</%def>

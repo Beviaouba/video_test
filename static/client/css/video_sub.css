@@ -1,0 +1,68 @@
+.video-image{
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+
+}
+
+.span{
+    font-weight: bold;
+}
+
+p{
+    margin-bottom: 0.2rem;
+}
+
+.info{
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.number-ul{
+    margin-bottom: 3rem;
+}
+
+.number-ul li{
+    display: inline-block;
+}
+
+.data{
+    margin-bottom: 20%;
+}
+
+.comment-area{
+    width: 100%;
+}
+
+.comment-area a{
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+
+.comment-area textarea{
+    width: 95%;
+    border: 1px solid #cccccc;
+    height: 5rem;
+    padding: 1%;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+}
+
+#comment-submit{
+    border: 1px solid #cccccc;
+    padding: 0.2%;
+    margin-right: 2.5%;
+    float: right;
+}
+
+.comment-show{
+    margin-bottom: 3.5rem;
+    display: block;
+}
+
+.comment-show-area{
+    margin-bottom: 3rem;
+}
